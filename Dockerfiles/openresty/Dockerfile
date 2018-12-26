@@ -83,6 +83,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         autoconf \
         libtool \
         automake \
+        dnsutils \
+        vim \
     && cd /tmp \
     && curl -fSL https://www.openssl.org/source/openssl-${RESTY_OPENSSL_VERSION}.tar.gz -o openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
     && tar xzf openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
@@ -135,6 +137,7 @@ RUN groupadd nginx \
 COPY Dockerfiles/openresty/conf/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 COPY Dockerfiles/openresty/conf.d/ /etc/nginx/conf.d/
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends dnsutils
+# lua create file
+RUN chmod 777 /etc/nginx/conf.d/.
 
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
