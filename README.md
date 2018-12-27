@@ -1,6 +1,10 @@
 # ngrok-openresty
 
-ngrok-openresty is a tool for to verify 
+ngrok-openresty is a tool that makes it easy to set proxy settings and publish them on the Internet.
+
+There are cases where you want to make simple tuning and publish it on the Internet and check the behavior.
+
+For example, checking with [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/).
 
 Requirement
 ---
