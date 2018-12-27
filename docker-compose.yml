@@ -10,4 +10,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfiles/openresty/Dockerfile
-
+    networks:
+      - ngrok_network
+  ngrok_server:
+    hostname: ngrok_server
+    container_name: ngrok_server
+    ports:
+      - 4040:4040
+    environment:
+      # Since it was necessary to designate an external resource before $NGROK_PORT in the start option.
+      NGROK_PORT: openresty_proxy:8080
+    restart: "no"
+    image: wernight/ngrok
+    networks:
+      - ngrok_network
+networks:
+  ngrok_network:
+    external: true

@@ -9,33 +9,43 @@ For example, checking with [PageSpeed Insights](https://developers.google.com/sp
 Requirement
 ---
 
- - ngrok v2
  - docker 18.0++
  - docker-compose 1.23++
 
 Usage
 ---
 
-Start docker container : default listening on port 8080:
+##### Start docker container 
 
 ```
 $ cd ./ngrok-openresty
 $ docker-compose build
+$ docker network create ngrok_network
 $ docker-compose up
 ```
 
-Start ngrok for getting 'ngrok_fqdn'
- - '8080' is open port by using docker-compose
+##### Getting ngrok fqdn
 
-```
-$ ngrok http 8080
-```
+Open http://localhost:4040 in a web browser to inspect request details.
 
-Regist verify fqdn
+Copy the described fqdn ( example 375a84fc.ngrok.io )
+ 
+##### Regist verify fqdn
 
 ```
 $ ./register.sh <target fqdn> <output ngrok fqdn>
 ```
+
+example
+
+```
+$ ./register.sh zabio3.github.io 375a84fc.ngrok.io
+```
+
+##### show verify web site
+
+access the 'ngrok_fqdn'
+
 
 Feedbacks
 ---
