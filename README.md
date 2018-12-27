@@ -20,7 +20,7 @@ Usage
 ```
 $ cd ./ngrok-openresty
 $ docker-compose build
-$ docker network create ngrok_network
+$ docker network create ngrok_network  
 $ docker-compose up
 ```
 
