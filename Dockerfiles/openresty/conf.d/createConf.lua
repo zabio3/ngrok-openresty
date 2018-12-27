@@ -1,13 +1,21 @@
+function file_exists(name)
+    local f=io.open(name,"r")
+    if f~=nil then io.close(f) return true else return false end
+end
+
 if (ngx.var.host == nil and ngx.var.arg_ngrok_fqdn == nil and ngx.var.arg_origin_ip_url == nil) then
     ngx.say(400);
 else
     path = '/etc/nginx/conf.d/'
     foldername = ngx.var.host
-    os.execute("mkdir " .. path..foldername)
-    file = io.open(path..foldername..'/'..ngx.var.arg_ngrok_fqdn..'.conf', "w")
-    file:write([[
+    filepath = path..foldername..'/'..ngx.var.arg_ngrok_fqdn..'.conf'
+
+    if file_exists(filepath) == false then
+        os.execute("mkdir " .. path..foldername)
+        file = io.open(filepath, "w")
+        file:write([[
 server {
-  listen       80;
+  listen       8080;
   server_name  ]]..ngx.var.arg_ngrok_fqdn..[[;
   access_log /dev/stdout;
 
@@ -43,12 +51,10 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
   }
 }]])
-
-    file:close()
-
-    ngx.say(200);
+        file:close()
+        io.popen('/usr/local/openresty/bin/openresty -s reload');
+        ngx.say('create file');
+    else
+        ngx.say('exist file');
+    end
 end
-
--- そもそもリロードに失敗している。権限周りを含めてみなす必要あり
---io.popen('/usr/local/openresty/bin/openresty -s reload');
---io.popen('/usr/local/openresty/nginx/sbin/nginx -s reload');

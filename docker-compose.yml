@@ -5,7 +5,7 @@ services:
     hostname: openresty_proxy
     container_name: openresty_proxy
     ports:
-      - 8080:80
+      - 8080:8080
     restart: "no"
     build:
       context: .

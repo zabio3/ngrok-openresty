@@ -139,5 +139,7 @@ COPY Dockerfiles/openresty/conf.d/ /etc/nginx/conf.d/
 
 # lua create file
 RUN chmod 777 /etc/nginx/conf.d/.
+RUN chmod 777 -R /usr/local/openresty/nginx/
 
+USER nginx
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
