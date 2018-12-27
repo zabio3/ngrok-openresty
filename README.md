@@ -28,7 +28,7 @@ $ docker-compose up
 
 Open http://localhost:4040 in a web browser to inspect request details.
 
-Copy the described fqdn ( example 375a84fc.ngrok.io )
+Copy the described fqdn. (ex.375a84fc.ngrok.io)
  
 ##### Regist verify fqdn
 
@@ -36,16 +36,15 @@ Copy the described fqdn ( example 375a84fc.ngrok.io )
 $ ./register.sh <target fqdn> <output ngrok fqdn>
 ```
 
-example
+ex.
 
 ```
 $ ./register.sh zabio3.github.io 375a84fc.ngrok.io
 ```
 
-##### show verify web site
+This completes the setting.
 
-access the 'ngrok_fqdn'
-
+When accessing fqdn paid out from ngrok, the site of fqdn set will be proxied and displayed.
 
 Feedbacks
 ---
